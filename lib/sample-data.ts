@@ -3,11 +3,11 @@ import type { OSState } from "./types";
 // Sample data for the demo. Everything here is illustrative, not real figures.
 export const SAMPLE: OSState = {
   projects: [
-    { id: "p1", name: "Serenova OS V1", summary: "Build and ship the operating system itself.", status: "active", system: "Command Centre" },
-    { id: "p2", name: "Culture magazine, Issue 002", summary: "Second issue: interviews, listings and a city guide.", status: "active", system: "Marketing Agent" },
-    { id: "p3", name: "Ebook launch", summary: "Write, format and launch a short guide on Gumroad and KDP.", status: "active", system: "Executive Assistant" },
-    { id: "p5", name: "Calm-tech tool suite", summary: "Ten tools for children, families and neurodivergent adults: nine live, one in development.", status: "active", system: "Command Centre" },
-    { id: "p4", name: "Workflow audit offer", summary: "A fixed-price automation audit for small teams.", status: "paused", system: "Executive Assistant" },
+    { id: "p1", name: "Serenova OS V1", summary: "Build and ship the operating system itself.", status: "active", system: "Home" },
+    { id: "p2", name: "Culture magazine, Issue 002", summary: "Second issue: interviews, listings and a city guide.", status: "active", system: "Content plan" },
+    { id: "p3", name: "Ebook launch", summary: "Write, format and launch a short guide on Gumroad and KDP.", status: "active", system: "To-do" },
+    { id: "p5", name: "Calm-tech tool suite", summary: "Ten tools for children, families and neurodivergent adults: nine live, one in development.", status: "active", system: "Home" },
+    { id: "p4", name: "Workflow audit offer", summary: "A fixed-price automation audit for small teams.", status: "paused", system: "To-do" },
   ],
   tasks: [
     { id: "t1", title: "Create the GitHub repository", done: true, priority: "high", projectId: "p1" },
@@ -51,8 +51,8 @@ export const SAMPLE: OSState = {
     { id: "d2", date: "2026-11-24", title: "Private by default", outcome: "Workspace behind a login; public site shows the architecture." },
   ],
   activity: [
-    { id: "a1", at: "2026-11-20", from: "Second Brain", to: "Executive Assistant", text: "“Agents that share one memory” became an action plan" },
-    { id: "a2", at: "2026-11-18", from: "Second Brain", to: "Marketing Agent", text: "“Calm interfaces reduce drop-off” flagged for a blog post" },
-    { id: "a3", at: "2026-11-17", from: "Research", to: "Second Brain", text: "“Designing for cognitive load” saved as a note" },
+    { id: "a1", at: "2026-11-20", from: "Ideas", to: "To-do", text: "“Agents that share one memory” turned into tasks" },
+    { id: "a2", at: "2026-11-18", from: "Ideas", to: "Content plan", text: "“Calm interfaces reduce drop-off” added to the content plan" },
+    { id: "a3", at: "2026-11-17", from: "Reading list", to: "Ideas", text: "“Designing for cognitive load” saved as a note" },
   ],
 };

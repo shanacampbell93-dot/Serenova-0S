@@ -7,7 +7,7 @@ export default function Projects() {
   const os = useOS();
   return (
     <>
-      <PageHead kicker="Workspace · Projects" title={<>What you are <em>building.</em></>} lede="Progress is worked out from each project's tasks in the Executive Assistant." />
+      <PageHead kicker="Projects" title="Your projects" lede="How far along each project is, worked out from its tasks in your to-do list." />
       <div className="grid g-2">
         {os.projects.map((p) => {
           const pr = projectProgress(os.tasks, p.id);
@@ -15,7 +15,7 @@ export default function Projects() {
           return (
             <section key={p.id} className="card stack">
               <div className="row between">
-                <span className="kicker">{p.system}</span>
+                <span className="kicker">Project</span>
                 <span className={`tag ${p.status === "active" ? "signal" : ""}`}>{p.status}</span>
               </div>
               <h2 className="h2">{p.name}</h2>

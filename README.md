@@ -1,21 +1,21 @@
 # Serenova OS
 
-A personal digital operating system: one ecosystem, four specialist agents, shared knowledge.
+The digital workspace Shana Campbell built to run her work: ideas, to-dos, projects, content and money in one place.
 Designed and built by Shana Campbell.
 
 | System | What it does |
 | --- | --- |
-| **00 · Command Centre** (`/os`) | Dashboard: priorities, projects, pipeline, finances, live system activity |
-| **01 · Second Brain** (`/os/brain`) | Searchable notes, ideas and research, with tags |
-| **02 · Executive Assistant** (`/os/assistant`) | Tasks, decision log, document templates |
-| **03 · Marketing Agent** (`/os/marketing`) | Content pipeline from idea to published, publishing calendar |
-| Workspace | `/os/projects`, `/os/research`, `/os/finances`, `/os/settings` |
+| **Home** (`/os`) | Today's priorities, projects, content plan and recent activity |
+| **Ideas** (`/os/brain`) | Searchable notes and ideas, with tags |
+| **To-do** (`/os/assistant`) | Tasks, decisions made, document templates |
+| **Content plan** (`/os/marketing`) | Every post from idea to published, plus a calendar |
+| More | Projects, Reading list, Money, Settings |
 
-**The systems talk to each other.** In the Second Brain, *Flag for Marketing* sends a note into the Marketing
-pipeline. *Make action plan* turns it into three tasks in the Executive Assistant. Research items can be saved
-into the Brain. Finished tasks and published pieces show up in the Command Centre's activity feed.
+**The sections are connected.** In Ideas, *Add to content plan* puts an idea into the content plan and
+*Turn into tasks* creates three to-dos. Reading-list items can be saved to Ideas. Finished tasks and
+published posts show up in Home's recent activity.
 
-The public page at `/` explains the architecture, so the project works as a portfolio piece.
+The front page at `/` explains what it is in plain English, lists what Shana can be hired for, and shows her tools.
 
 ---
 

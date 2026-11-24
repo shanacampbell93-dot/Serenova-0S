@@ -14,7 +14,7 @@ export default function Finances() {
 
   return (
     <>
-      <PageHead kicker="Workspace · Finances" title={<>The practice, in <em>numbers.</em></>} lede="Income and costs across services, products and publishing." aside={<span className="demo-banner">Sample figures</span>} />
+      <PageHead kicker="Money" title="Money in and out" lede="Income and costs across services, products and publishing." aside={<span className="demo-banner">Sample figures</span>} />
       <div className="grid g-3" style={{ marginBottom: 18 }}>
         <Stat label="Income" value={gbp(income)} />
         <Stat label="Costs" value={gbp(spend)} />

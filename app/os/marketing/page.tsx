@@ -24,16 +24,16 @@ export default function Marketing() {
   return (
     <>
       <PageHead
-        kicker="03 · Marketing Agent"
-        title={<>Research, publish, <em>grow.</em></>}
-        lede="A pipeline from first idea to published piece. Notes flagged in the Second Brain arrive here as ideas."
+        kicker="Content plan"
+        title="Your content plan"
+        lede="Every post, blog and newsletter, from first idea to published. Use the arrows to move a piece along."
       />
 
       <div className="grid g-4" style={{ marginBottom: 18 }}>
-        <Stat label="In pipeline" value={os.content.filter((c) => c.stage !== "published").length} />
+        <Stat label="In progress" value={os.content.filter((c) => c.stage !== "published").length} />
         <Stat label="Scheduled" value={scheduled.length} />
         <Stat label="Published" value={os.content.filter((c) => c.stage === "published").length} />
-        <Stat label="From Second Brain" value={fromBrain} note="ideas sent across" />
+        <Stat label="From Ideas" value={fromBrain} note="sent from Ideas" />
       </div>
 
       <form onSubmit={add} className="card row wrap" style={{ marginBottom: 18 }}>
@@ -56,7 +56,7 @@ export default function Marketing() {
                   <div className="row between wrap" style={{ marginTop: 10, gap: 8 }}>
                     <span className="row" style={{ gap: 6 }}>
                       <span className="tag">{c.channel}</span>
-                      {c.noteId && <span className="tag signal" title="Came from the Second Brain">brain</span>}
+                      {c.noteId && <span className="tag signal" title="Came from Ideas">from Ideas</span>}
                     </span>
                     <span className="row" style={{ gap: 4 }}>
                       <button className="btn small ghost" disabled={i === 0} onClick={() => os.moveContent(c.id, -1)} aria-label="Move back">←</button>
@@ -80,10 +80,9 @@ export default function Marketing() {
             {!scheduled.length && <li className="muted">Nothing scheduled yet.</li>}
           </ul>
         </Card>
-        <Card title="Performance" meta="connect analytics in phase 2">
+        <Card title="Performance" meta="coming soon">
           <p className="muted" style={{ marginTop: 0 }}>
-            Once Supabase and your channel analytics are connected, this panel will show reach, opens and
-            conversions for each published piece. The agent will also suggest what to make next.
+            Once your analytics are connected, this will show how each post performed and suggest what to make next.
           </p>
         </Card>
       </div>

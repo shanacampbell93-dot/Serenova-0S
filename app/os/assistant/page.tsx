@@ -32,9 +32,9 @@ export default function Assistant() {
   return (
     <>
       <PageHead
-        kicker="02 · Executive Assistant"
-        title={<>Plans, decisions and <em>execution.</em></>}
-        lede="Tasks from every system land here. Ideas from the Second Brain arrive as ready-made action plans."
+        kicker="To-do"
+        title="Your to-do list"
+        lede="Every task in one place. Ideas you turn into tasks arrive here automatically."
       />
 
       <form onSubmit={add} className="card row wrap" style={{ marginBottom: 18 }}>
@@ -66,7 +66,7 @@ export default function Assistant() {
                     <span className={t.done ? "done-text" : ""}>{t.title}</span>
                     <span className="mono muted">
                       {projectName(t.projectId) ?? "Unassigned"}
-                      {t.noteId && " · from Second Brain"}
+                      {t.noteId && " · from Ideas"}
                     </span>
                   </span>
                 </span>
@@ -78,7 +78,7 @@ export default function Assistant() {
         </Card>
 
         <div className="stack">
-          <Card title="Decision log" meta={`${os.decisions.length}`}>
+          <Card title="Decisions made" meta={`${os.decisions.length}`}>
             <ul className="list">
               {os.decisions.map((d) => (
                 <li key={d.id}>
@@ -88,7 +88,7 @@ export default function Assistant() {
               ))}
             </ul>
           </Card>
-          <Card title="Document templates" meta="AI drafting in phase 2">
+          <Card title="Document templates" meta="coming soon">
             <ul className="list">
               {DOCS.map((d) => (
                 <li key={d.name}><div>{d.name}</div><div className="muted" style={{ fontSize: 13 }}>{d.use}</div></li>

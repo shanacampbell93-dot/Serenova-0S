@@ -39,7 +39,7 @@ export function Stat({ label, value, note }: { label: string; value: React.React
 
 export function PriorityTag({ p }: { p: Priority }) {
   const cls = p === "high" ? "warm" : p === "med" ? "cool" : "";
-  return <span className={`tag ${cls}`}>{p === "med" ? "medium" : p}</span>;
+  return <span className={`tag ${cls}`}>{p === "med" ? "Medium" : p === "high" ? "High" : "Low"}</span>;
 }
 
 export function Bar({ pct }: { pct: number }) {

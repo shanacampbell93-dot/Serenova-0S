@@ -5,6 +5,11 @@ import { useState } from "react";
 import { Bar, Card, Check, PageHead, PriorityTag, Stat } from "@/components/ui";
 import { STAGES, gbp, projectProgress, shortDate, useOS } from "@/lib/store";
 
+const greeting = () => {
+  const h = new Date().getHours();
+  return h < 12 ? "Good morning" : h < 18 ? "Good afternoon" : "Good evening";
+};
+
 export default function CommandCentre() {
   const os = useOS();
   const [capture, setCapture] = useState("");
@@ -25,23 +30,23 @@ export default function CommandCentre() {
   return (
     <>
       <PageHead
-        kicker="00 · Command Centre"
-        title={<>Everything in <em>motion</em>, in one place.</>}
-        lede="What you are building, researching and prioritising right now, across all four systems."
+        kicker="Home"
+        title={<span suppressHydrationWarning>{greeting()}, Shana</span>}
+        lede="Here’s what’s happening across your ideas, to-dos, projects and content plan."
         aside={<span className="mono muted" suppressHydrationWarning>{new Date().toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" })}</span>}
       />
 
       <form onSubmit={submit} className="card accent row wrap" style={{ marginBottom: 18 }}>
-        <span className="kicker signal" style={{ whiteSpace: "nowrap" }}>Quick capture</span>
-        <input className="input" style={{ flex: 1, minWidth: 200, width: "auto" }} value={capture} onChange={(e) => setCapture(e.target.value)} placeholder="An idea, a link, a thought… it goes straight to your Second Brain" />
+        <span className="kicker signal" style={{ whiteSpace: "nowrap" }}>Quick note</span>
+        <input className="input" style={{ flex: 1, minWidth: 200, width: "auto" }} value={capture} onChange={(e) => setCapture(e.target.value)} placeholder="Jot down an idea… it’s saved straight to Ideas" />
         <button className="btn primary">Save</button>
       </form>
 
       <div className="grid g-4" style={{ marginBottom: 18 }}>
         <Stat label="Open tasks" value={open.length} note={`${open.filter((t) => t.priority === "high").length} high priority`} />
-        <Stat label="In the brain" value={os.notes.length} note="notes and ideas" />
-        <Stat label="Content pipeline" value={pipeline} note={`${os.content.filter((c) => c.stage === "scheduled").length} scheduled`} />
-        <Stat label="Net this month" value={gbp(net)} note="sample figures" />
+        <Stat label="Ideas saved" value={os.notes.length} note="in Ideas" />
+        <Stat label="Content in progress" value={pipeline} note={`${os.content.filter((c) => c.stage === "scheduled").length} scheduled`} />
+        <Stat label="Money in (net)" value={gbp(net)} note="sample figures" />
       </div>
 
       <div className="grid g-3">
@@ -57,7 +62,7 @@ export default function CommandCentre() {
           </ul>
         </Card>
 
-        <Card title="System activity" meta="live">
+        <Card title="Recent activity">
           <ul className="list feed">
             {os.activity.slice(0, 6).map((a) => (
               <li key={a.id}>
@@ -79,14 +84,14 @@ export default function CommandCentre() {
                 <div key={p.id} className="stack" style={{ gap: 8 }}>
                   <div className="row between"><strong style={{ fontWeight: 500 }}>{p.name}</strong><span className="mono muted">{pr.pct}%</span></div>
                   <Bar pct={pr.pct} />
-                  <span className="mono muted">{pr.done}/{pr.total} tasks · {p.system}</span>
+                  <span className="mono muted">{pr.done} of {pr.total} tasks done</span>
                 </div>
               );
             })}
           </div>
         </Card>
 
-        <Card title="Pipeline" meta={<Link href="/os/marketing">Marketing →</Link>}>
+        <Card title="Content plan" meta={<Link href="/os/marketing">Open →</Link>}>
           <ul className="list">
             {STAGES.map((s) => (
               <li key={s} className="row between">

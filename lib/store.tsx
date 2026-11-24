@@ -52,7 +52,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   const addNote: Actions["addNote"] = useCallback((n) => {
     setState((s) => {
       const note: Note = { id: uid("n"), createdAt: today(), ...n };
-      return log({ ...s, notes: [note, ...s.notes] }, "Capture", "Second Brain", `“${n.title}” saved`);
+      return log({ ...s, notes: [note, ...s.notes] }, "Quick note", "Ideas", `“${n.title}” saved`);
     });
   }, []);
 
@@ -63,7 +63,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       const item: ContentItem = { id: uid("c"), title: note.title, channel, stage: "idea", noteId };
       return log(
         { ...s, content: [item, ...s.content], notes: s.notes.map((n) => (n.id === noteId ? { ...n, contentId: item.id } : n)) },
-        "Second Brain", "Marketing Agent", `“${note.title}” flagged for ${channel}`,
+        "Ideas", "Content plan", `“${note.title}” added to the content plan (${channel})`,
       );
     });
   }, []);
@@ -80,7 +80,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       const tasks: Task[] = steps.map(([title, priority]) => ({ id: uid("t"), title, priority, done: false, noteId }));
       return log(
         { ...s, tasks: [...tasks, ...s.tasks], notes: s.notes.map((n) => (n.id === noteId ? { ...n, planned: true } : n)) },
-        "Second Brain", "Executive Assistant", `“${note.title}” became a 3-step action plan`,
+        "Ideas", "To-do", `“${note.title}” turned into 3 tasks`,
       );
     });
   }, []);
@@ -93,7 +93,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     setState((s) => {
       const task = s.tasks.find((t) => t.id === id);
       const next = { ...s, tasks: s.tasks.map((t) => (t.id === id ? { ...t, done: !t.done } : t)) };
-      return task && !task.done ? log(next, "Executive Assistant", "Command Centre", `Done: ${task.title}`) : next;
+      return task && !task.done ? log(next, "To-do", "Home", `Done: ${task.title}`) : next;
     });
   }, []);
 
@@ -105,7 +105,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       const stage = STAGES[i];
       if (stage === item.stage) return s;
       const next = { ...s, content: s.content.map((c) => (c.id === id ? { ...c, stage, date: stage === "published" ? today() : c.date } : c)) };
-      return stage === "published" ? log(next, "Marketing Agent", "Command Centre", `Published: ${item.title}`) : next;
+      return stage === "published" ? log(next, "Content plan", "Home", `Published: ${item.title}`) : next;
     });
   }, []);
 
@@ -128,7 +128,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
       const note: Note = { id: uid("n"), title: r.title, body: `Saved from research (${r.source}).`, tags: ["research"], createdAt: today() };
       return log(
         { ...s, notes: [note, ...s.notes], research: s.research.map((x) => (x.id === id ? { ...x, noteId: note.id } : x)) },
-        "Research", "Second Brain", `“${r.title}” saved as a note`,
+        "Reading list", "Ideas", `“${r.title}” saved as a note`,
       );
     });
   }, []);

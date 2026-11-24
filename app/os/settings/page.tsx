@@ -7,15 +7,15 @@ const INTEGRATIONS = [
   { name: "GitHub", role: "Source code and version history", status: "connected" },
   { name: "Vercel", role: "Hosting and deployment", status: "connected" },
   { name: "Supabase", role: "Database, login and file storage", status: "phase 2" },
-  { name: "AI API", role: "Powers the four specialist agents", status: "phase 2" },
-  { name: "Analytics", role: "Channel performance for the Marketing Agent", status: "later" },
+  { name: "AI API", role: "Adds smart suggestions and drafting", status: "phase 2" },
+  { name: "Analytics", role: "Post performance for the content plan", status: "later" },
 ];
 
 export default function Settings() {
   const os = useOS();
   return (
     <>
-      <PageHead kicker="Workspace · Settings" title={<>Integrations and <em>preferences.</em></>} />
+      <PageHead kicker="Settings" title="Settings" />
       <div className="grid g-3" style={{ alignItems: "start" }}>
         <Card title="Integrations" className="span-2">
           <ul className="list">

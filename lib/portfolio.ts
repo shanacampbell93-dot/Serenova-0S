@@ -22,7 +22,18 @@ export const TOOLS: Tool[] = [
   { group: "Safety & recovery", name: "Reboot", desc: "The 12 steps retold through technology, with an urge timer.", url: `${BASE}/reboot/`, status: "live" },
 ];
 
+// What people can hire Shana for. Edit freely.
+export const SERVICES = [
+  { icon: "🗂️", title: "Custom workspaces and dashboards", body: "A system like this one, set up around how you or your team actually work: tasks, projects, content and reporting in one place." },
+  { icon: "⚙️", title: "AI workflows and automation", body: "AI assistants, templates and automations that take repetitive admin off your plate and save hours every week." },
+  { icon: "📎", title: "Microsoft 365 setup and training", body: "SharePoint, Teams, Planner and Forms organised properly, with simple guides your staff will actually follow." },
+  { icon: "🧩", title: "Calm, accessible tools", body: "Simple apps for children, families and neurodivergent people, built with no ads, no tracking and no clutter." },
+  { icon: "✍️", title: "Clear websites and plain-English content", body: "Reviews and rewrites so visitors understand what you do, and what to do next, the first time they land." },
+  { icon: "🎓", title: "Training and workshops", body: "Friendly sessions that help non-technical teams feel confident using AI and digital tools." },
+];
+
 export const LINKS = {
+  contact: "https://maveserenova.netlify.app/#contact",
   portfolio: "https://maveserenova.netlify.app/",
   github: "https://github.com/shanacampbell93-dot",
   source: "https://github.com/shanacampbell93-dot/studio-os",

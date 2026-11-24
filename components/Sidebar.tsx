@@ -2,27 +2,25 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { APP_NAME, VERSION } from "@/lib/config";
 
-const SYSTEMS = [
-  { href: "/os", n: "00", label: "Command Centre" },
-  { href: "/os/brain", n: "01", label: "Second Brain" },
-  { href: "/os/assistant", n: "02", label: "Executive Assistant" },
-  { href: "/os/marketing", n: "03", label: "Marketing Agent" },
+const MAIN = [
+  { href: "/os", n: "🏠", label: "Home" },
+  { href: "/os/brain", n: "💡", label: "Ideas" },
+  { href: "/os/assistant", n: "✅", label: "To-do" },
+  { href: "/os/marketing", n: "📣", label: "Content plan" },
 ];
-const WORKSPACE = [
-  { href: "/os/projects", n: "·", label: "Projects" },
-  { href: "/os/research", n: "·", label: "Research library" },
-  { href: "/os/finances", n: "·", label: "Finances" },
-  { href: "/os/settings", n: "·", label: "Settings" },
+const MORE = [
+  { href: "/os/projects", n: "📁", label: "Projects" },
+  { href: "/os/research", n: "📚", label: "Reading list" },
+  { href: "/os/finances", n: "💷", label: "Money" },
+  { href: "/os/settings", n: "⚙️", label: "Settings" },
 ];
 
 export function Sidebar({ demo }: { demo: boolean }) {
   const path = usePathname();
-  const [first, ...rest] = APP_NAME.split(" ");
   const link = (l: { href: string; n: string; label: string }) => (
     <Link key={l.href} href={l.href} className={`nav-link ${path === l.href ? "active" : ""}`}>
-      <span className="nav-num">{l.n}</span>
+      <span className="nav-num" aria-hidden>{l.n}</span>
       <span>{l.label}</span>
     </Link>
   );
@@ -30,15 +28,15 @@ export function Sidebar({ demo }: { demo: boolean }) {
   return (
     <aside className="sidebar">
       <Link href="/" className="brand">
-        <span className="brand-name">{first} <em>{rest.join(" ")}</em></span>
-        <span className="kicker">{VERSION} · Workspace</span>
+        <span className="brand-name">Serenova <em>OS</em></span>
+        <span className="muted" style={{ fontSize: 12 }}>My workspace</span>
       </Link>
-      <nav className="nav-group"><span className="kicker">Systems</span>{SYSTEMS.map(link)}</nav>
-      <nav className="nav-group"><span className="kicker">Workspace</span>{WORKSPACE.map(link)}</nav>
+      <nav className="nav-group">{MAIN.map(link)}</nav>
+      <nav className="nav-group"><span className="kicker">More</span>{MORE.map(link)}</nav>
       <div className="sidebar-foot">
-        <span className="mono muted"><span className="pulse" />All systems online</span>
+        <Link href="/" className="muted">← About Serenova OS</Link>
         {demo ? (
-          <span className="mono muted">Demo mode · sample data</span>
+          <span className="muted"><span className="pulse" />Demo · sample data</span>
         ) : (
           <form action="/api/logout" method="post"><button className="btn ghost small">Sign out</button></form>
         )}

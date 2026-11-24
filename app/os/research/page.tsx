@@ -9,7 +9,7 @@ export default function Research() {
   const os = useOS();
   return (
     <>
-      <PageHead kicker="Workspace · Research library" title={<>Reading, <em>sorted.</em></>} lede="Articles, reports and books in progress. Save anything worth keeping to the Second Brain." />
+      <PageHead kicker="Reading list" title="Your reading list" lede="Articles, reports and books. Save anything worth keeping to Ideas." />
       <div className="grid g-3" style={{ alignItems: "start" }}>
         {(["to-read", "reading", "done"] as const).map((status) => (
           <Card key={status} title={LABEL[status]} meta={`${os.research.filter((r) => r.status === status).length}`}>
@@ -21,7 +21,7 @@ export default function Research() {
                     <span className="tag">{r.source}</span>
                     <span className="row" style={{ gap: 6 }}>
                       {status !== "done" && <button className="btn small" onClick={() => os.advanceResearch(r.id)}>{status === "to-read" ? "Start" : "Finish"}</button>}
-                      {r.noteId ? <span className="tag signal">→ Brain</span> : <button className="btn small" onClick={() => os.saveResearchToBrain(r.id)}>Save to brain</button>}
+                      {r.noteId ? <span className="tag signal">✓ In Ideas</span> : <button className="btn small" onClick={() => os.saveResearchToBrain(r.id)}>Save to Ideas</button>}
                     </span>
                   </div>
                 </li>

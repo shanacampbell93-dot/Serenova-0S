@@ -28,9 +28,9 @@ export default function SecondBrain() {
   return (
     <>
       <PageHead
-        kicker="01 · Second Brain"
-        title={<>Ideas, research and the <em>connections</em> between them.</>}
-        lede="Capture anything. Then send it on: flag it for the Marketing Agent, or turn it into an action plan for the Executive Assistant."
+        kicker="Ideas"
+        title="Your ideas"
+        lede="Write ideas down as they come. With one click, turn any idea into a to-do list or add it to your content plan."
       />
 
       <div className="grid g-3" style={{ alignItems: "start" }}>
@@ -56,11 +56,11 @@ export default function SecondBrain() {
                 <div className="row wrap">{n.tags.map((t) => <span key={t} className="tag">#{t}</span>)}</div>
                 <div className="row wrap">
                   {n.contentId
-                    ? <span className="tag signal">→ Marketing</span>
-                    : <button className="btn small" onClick={() => os.flagForContent(n.id)}>Flag for Marketing</button>}
+                    ? <span className="tag signal">✓ In content plan</span>
+                    : <button className="btn small" onClick={() => os.flagForContent(n.id)}>Add to content plan</button>}
                   {n.planned
-                    ? <span className="tag signal">→ Action plan</span>
-                    : <button className="btn small" onClick={() => os.makeActionPlan(n.id)}>Make action plan</button>}
+                    ? <span className="tag signal">✓ Tasks created</span>
+                    : <button className="btn small" onClick={() => os.makeActionPlan(n.id)}>Turn into tasks</button>}
                 </div>
               </div>
             </article>
@@ -68,12 +68,12 @@ export default function SecondBrain() {
           {!results.length && <p className="muted">No notes match that yet.</p>}
         </div>
 
-        <Card title="Capture" meta={`${os.notes.length} notes`}>
+        <Card title="New idea" meta={`${os.notes.length} saved`}>
           <form onSubmit={save} className="stack">
             <input className="input" placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />
             <textarea className="textarea" placeholder="What did you notice? Why does it matter?" value={body} onChange={(e) => setBody(e.target.value)} />
             <input className="input" placeholder="Tags, separated by commas" value={tags} onChange={(e) => setTags(e.target.value)} />
-            <button className="btn primary">Save to brain</button>
+            <button className="btn primary">Save idea</button>
           </form>
         </Card>
       </div>

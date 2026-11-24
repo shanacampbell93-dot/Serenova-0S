@@ -1,4 +1,4 @@
-# Studio OS
+# Serenova OS
 
 A personal digital operating system: one ecosystem, four specialist agents, shared knowledge.
 Designed and built by Shana Campbell.

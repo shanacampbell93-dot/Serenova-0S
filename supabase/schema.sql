@@ -1,4 +1,4 @@
--- Studio OS · Phase 2 database schema for Supabase (Postgres).
+-- Serenova OS · Phase 2 database schema for Supabase (Postgres).
 -- Paste into Supabase → SQL Editor → Run. Every table has an owner column and
 -- row-level security, so the same database can later hold collaborators or subscribers
 -- without anyone seeing anyone else's data.

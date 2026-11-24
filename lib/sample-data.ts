@@ -3,7 +3,7 @@ import type { OSState } from "./types";
 // Sample data for the demo. Everything here is illustrative, not real figures.
 export const SAMPLE: OSState = {
   projects: [
-    { id: "p1", name: "Studio OS V1", summary: "Build and ship the operating system itself.", status: "active", system: "Command Centre" },
+    { id: "p1", name: "Serenova OS V1", summary: "Build and ship the operating system itself.", status: "active", system: "Command Centre" },
     { id: "p2", name: "Culture magazine, Issue 002", summary: "Second issue: interviews, listings and a city guide.", status: "active", system: "Marketing Agent" },
     { id: "p3", name: "Ebook launch", summary: "Write, format and launch a short guide on Gumroad and KDP.", status: "active", system: "Executive Assistant" },
     { id: "p5", name: "Calm-tech tool suite", summary: "Ten tools for children, families and neurodivergent adults: nine live, one in development.", status: "active", system: "Command Centre" },

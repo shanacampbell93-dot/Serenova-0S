@@ -2,7 +2,7 @@
 export const SESSION_COOKIE = "os_session";
 
 export async function sessionToken(password: string): Promise<string> {
-  const secret = process.env.AUTH_SECRET ?? "studio-os-default-secret";
+  const secret = process.env.AUTH_SECRET ?? "serenova-os-default-secret";
   const data = new TextEncoder().encode(`${password}:${secret}`);
   const hash = await crypto.subtle.digest("SHA-256", data);
   return Array.from(new Uint8Array(hash))

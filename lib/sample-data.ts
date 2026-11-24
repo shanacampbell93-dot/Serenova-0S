@@ -6,6 +6,7 @@ export const SAMPLE: OSState = {
     { id: "p1", name: "Studio OS V1", summary: "Build and ship the operating system itself.", status: "active", system: "Command Centre" },
     { id: "p2", name: "Culture magazine, Issue 002", summary: "Second issue: interviews, listings and a city guide.", status: "active", system: "Marketing Agent" },
     { id: "p3", name: "Ebook launch", summary: "Write, format and launch a short guide on Gumroad and KDP.", status: "active", system: "Executive Assistant" },
+    { id: "p5", name: "Calm-tech tool suite", summary: "Ten tools for children, families and neurodivergent adults: nine live, one in development.", status: "active", system: "Command Centre" },
     { id: "p4", name: "Workflow audit offer", summary: "A fixed-price automation audit for small teams.", status: "paused", system: "Executive Assistant" },
   ],
   tasks: [
@@ -15,6 +16,8 @@ export const SAMPLE: OSState = {
     { id: "t4", title: "Draft chapter two of the ebook", done: false, priority: "med", projectId: "p3", due: "2026-12-04" },
     { id: "t5", title: "Design the ebook cover", done: false, priority: "low", projectId: "p3" },
     { id: "t6", title: "Write the audit offer one-pager", done: false, priority: "med", projectId: "p4" },
+    { id: "t8", title: "Finish SEN Meeting Prep and release it", done: false, priority: "high", projectId: "p5", due: "2026-12-10" },
+    { id: "t9", title: "Release First–Then Board, Homework Time and seven more tools", done: true, priority: "med", projectId: "p5" },
     { id: "t7", title: "Set up Supabase project", done: false, priority: "med", projectId: "p1" },
   ],
   notes: [

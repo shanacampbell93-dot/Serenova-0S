@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { APP_NAME, OWNER, TAGLINE, VERSION } from "@/lib/config";
+import { LINKS, TOOLS } from "@/lib/portfolio";
 
 const SYSTEMS = [
   { n: "00", name: "Command Centre", body: "Projects, priorities, finances and progress, in one view." },
@@ -30,7 +31,9 @@ export default function Home() {
       <header className="topbar">
         <div className="brand-name">{APP_NAME.split(" ")[0]} <em>{APP_NAME.split(" ").slice(1).join(" ")}</em></div>
         <div className="row">
-          <span className="kicker">System architecture · {VERSION}</span>
+          <a href="#tools" className="kicker">Tools</a>
+          <a href="#maker" className="kicker">The maker</a>
+          <span className="kicker">· {VERSION}</span>
           <Link href="/os" className="btn primary">Enter the workspace →</Link>
         </div>
       </header>
@@ -88,8 +91,52 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="section" id="maker">
+        <div className="grid g-2" style={{ alignItems: "end" }}>
+          <div>
+            <div className="kicker signal">The maker</div>
+            <h2 className="h1">Designed, built and shipped by <em>{OWNER}.</em></h2>
+          </div>
+          <p className="lede" style={{ margin: 0 }}>
+            Former teacher and founder, with Level 3 training in coding, SEN, psychology and wellbeing.
+            I build calm, practical technology: tools people can use on day one, and systems like this one
+            that keep a whole practice running. {APP_NAME} sits alongside ten tools I have made, nine of them already live.
+          </p>
+        </div>
+        <div className="row wrap" style={{ marginTop: 24 }}>
+          <a className="btn primary" href={LINKS.portfolio} target="_blank" rel="noreferrer">See the portfolio →</a>
+          <a className="btn" href={LINKS.github} target="_blank" rel="noreferrer">GitHub</a>
+          <a className="btn" href={LINKS.source} target="_blank" rel="noreferrer">Source code for {APP_NAME}</a>
+        </div>
+      </section>
+
+      <section className="section" id="tools">
+        <div className="row between wrap" style={{ alignItems: "flex-end" }}>
+          <div>
+            <div className="kicker">Built by {OWNER}</div>
+            <h2 className="h1">Ten tools. Nine <em>already live.</em></h2>
+          </div>
+          <span className="mono muted">{TOOLS.filter((t) => t.status === "live").length} live · {TOOLS.filter((t) => t.status !== "live").length} in development</span>
+        </div>
+        <div className="grid g-3" style={{ marginTop: 28 }}>
+          {TOOLS.map((t) => (
+            <article key={t.name} className="card stack" style={{ gap: 10 }}>
+              <div className="row between">
+                <span className="kicker">{t.group}</span>
+                <span className={`tag ${t.status === "live" ? "signal" : ""}`}>{t.status}</span>
+              </div>
+              <h3 className="h2">{t.name}</h3>
+              <p className="muted" style={{ margin: 0, fontSize: 14, flex: 1 }}>{t.desc}</p>
+              {t.url
+                ? <a className="mono" style={{ color: "var(--signal)" }} href={t.url} target="_blank" rel="noreferrer">Try it →</a>
+                : <span className="mono muted">Coming soon</span>}
+            </article>
+          ))}
+        </div>
+      </section>
+
       <footer className="row between wrap" style={{ paddingTop: 28 }}>
-        <span className="kicker">© {new Date().getFullYear()} {OWNER}</span>
+        <span className="kicker">© {new Date().getFullYear()} {OWNER} · Designed and built by {OWNER}</span>
         <Link href="/os" className="kicker signal">Open the live demo →</Link>
       </footer>
     </main>

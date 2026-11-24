@@ -6,7 +6,7 @@ import type { ContentItem, Note, OSState, Priority, Stage, Task } from "./types"
 
 // V1 keeps everything in the browser (localStorage) so the whole system works
 // with no database. Phase 2 swaps these functions for Supabase calls.
-const KEY = "serenova-os:v1";
+const KEY = "serenova-os:v2";
 export const STAGES: Stage[] = ["idea", "research", "drafting", "scheduled", "published"];
 
 const uid = (p: string) => `${p}-${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;

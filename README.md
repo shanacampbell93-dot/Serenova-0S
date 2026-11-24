@@ -1,4 +1,11 @@
-# Serenova OS
+# Shana Campbell: portfolio and Serenova OS
+
+The front page (`/`) is Shana's portfolio: selected work, skills, ways to work together and a contact form.
+The workspace app, Serenova OS, lives at `/os`.
+
+**Contact form:** paste a form endpoint (for example `https://formsubmit.co/ajax/you@example.com`) into `CONTACT_ENDPOINT` in `lib/portfolio.ts`.
+
+## Serenova OS
 
 The digital workspace Shana Campbell built to run her work: ideas, to-dos, projects, content and money in one place.
 Designed and built by Shana Campbell.

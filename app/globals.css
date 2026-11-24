@@ -15,7 +15,7 @@
   --cool: #1d4ed8;
   --good: #15803d;
 
-  --font-sans-stack: var(--font-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-sans-stack: var(--font-body), system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono-stack: var(--font-mono), ui-monospace, "SF Mono", Menlo, monospace;
 
   --radius: 14px;

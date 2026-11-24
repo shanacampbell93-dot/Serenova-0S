@@ -12,7 +12,6 @@ const MAIN = [
 const MORE = [
   { href: "/os/projects", n: "📁", label: "Projects" },
   { href: "/os/research", n: "📚", label: "Reading list" },
-  { href: "/os/finances", n: "💷", label: "Money" },
   { href: "/os/settings", n: "⚙️", label: "Settings" },
 ];
 
@@ -36,7 +35,7 @@ export function Sidebar({ demo }: { demo: boolean }) {
       <div className="sidebar-foot">
         <Link href="/" className="muted">← About Serenova OS</Link>
         {demo ? (
-          <span className="muted"><span className="pulse" />Demo · sample data</span>
+          <span className="muted"><span className="pulse" />Demo with example content</span>
         ) : (
           <form action="/api/logout" method="post"><button className="btn ghost small">Sign out</button></form>
         )}

@@ -1,198 +1,221 @@
 import Link from "next/link";
-import { APP_NAME, OWNER, OWNER_FIRST } from "@/lib/config";
-import { LINKS, SERVICES, TOOLS } from "@/lib/portfolio";
+import { ContactForm } from "@/components/ContactForm";
+import { LINKS, OFFERS, PROCESS, ROLES, SKILLS } from "@/lib/portfolio";
+import "./site.css";
 
-const FEATURES = [
-  { icon: "🏠", name: "Home", body: "One screen that shows today's priorities, active projects and what's coming up." },
-  { icon: "💡", name: "Ideas", body: "Write down ideas the moment they come. Search and tag them so nothing gets lost." },
-  { icon: "✅", name: "To-do", body: "Every task in one list, sorted by priority and linked to the project it belongs to." },
-  { icon: "📣", name: "Content plan", body: "Track every post, blog and newsletter from first idea to published." },
-  { icon: "📁", name: "Projects", body: "See how far along each project is, worked out from its tasks." },
-  { icon: "💷", name: "Money", body: "Income and costs at a glance, so you know where the business stands." },
-];
-
-const STEPS = [
-  ["Write it down", "An idea pops up. Type it into the quick note box on the Home screen and it's saved in Ideas."],
-  ["Turn it into action", "One click turns an idea into a short to-do list, or adds it to your content plan as a post."],
-  ["Watch it get done", "Tick off tasks and move posts along. Home shows your progress in one place."],
-];
-
-function Preview() {
-  // A small illustration of the workspace, built in HTML so it stays sharp.
+// Seren means "star" in Welsh. The four-point star is the site's mark.
+function Star({ size = 22, color = "var(--star)" }: { size?: number; color?: string }) {
   return (
-    <div className="hero-shot" aria-hidden>
-      <div className="row between" style={{ marginBottom: 12 }}>
-        <span className="h2">Good afternoon, {OWNER_FIRST}</span>
-        <span className="tag signal">Live demo</span>
-      </div>
-      <div className="grid g-2" style={{ gap: 12 }}>
-        <div className="card" style={{ padding: 14 }}>
-          <div className="kicker">Today</div>
-          {["Finish SEN Meeting Prep", "Shortlist interview subjects", "Deploy the new version"].map((t, i) => (
-            <div key={t} className="row" style={{ marginTop: 10, fontSize: 14 }}>
-              <span className={`check ${i === 2 ? "on" : ""}`} style={{ width: 16, height: 16 }} />
-              <span className={i === 2 ? "done-text" : ""}>{t}</span>
-            </div>
-          ))}
-        </div>
-        <div className="card" style={{ padding: 14 }}>
-          <div className="kicker">Content plan</div>
-          {[["Newsletter", "2 Dec"], ["Instagram", "5 Dec"], ["Blog", "Draft"]].map(([c, d]) => (
-            <div key={c} className="row between" style={{ marginTop: 10, fontSize: 14 }}><span>{c}</span><span className="muted">{d}</span></div>
-          ))}
-        </div>
-        <div className="card span-2" style={{ padding: 14 }}>
-          <div className="row between"><span className="kicker">Calm-tech tool suite</span><span className="muted" style={{ fontSize: 13 }}>90%</span></div>
-          <div className="bar" style={{ marginTop: 10 }}><span style={{ width: "90%" }} /></div>
-        </div>
-      </div>
+    <svg className="star" width={size} height={size} viewBox="0 0 24 24" aria-hidden>
+      <path d="M12 0c.9 6.4 5.6 11.1 12 12-6.4.9-11.1 5.6-12 12-.9-6.4-5.6-11.1-12-12C6.4 11.1 11.1 6.4 12 0Z" fill={color} />
+    </svg>
+  );
+}
+
+function Browser({ src, url, alt }: { src: string; url: string; alt: string }) {
+  return (
+    <div className="browser">
+      <div className="browser-bar"><i /><i /><i /><span className="browser-url">{url}</span></div>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={src} alt={alt} width={1600} height={1000} />
     </div>
   );
 }
 
-export default function Home() {
-  const live = TOOLS.filter((t) => t.status === "live").length;
+export default function Portfolio() {
   return (
-    <main className="public">
-      <header className="topbar">
-        <Link href="/" className="brand-name">Serenova <em>OS</em></Link>
-        <nav className="topnav">
-          <a href="#what">What it does</a>
-          <a href="#hire">Hire me</a>
-          <a href="#tools">My tools</a>
-          <a href="#about">About</a>
-          <Link href="/os" className="btn primary">Try the live demo</Link>
-        </nav>
+    <div className="site">
+      <header className="s-header">
+        <div className="wrap-w">
+          <Link href="/" className="s-logo"><Star size={20} />Shana Campbell</Link>
+          <nav className="s-nav" aria-label="Main">
+            <a href="#work">Work</a>
+            <a href="#skills">Skills</a>
+            <a href="#work-with-me">Work with me</a>
+            <a href="#contact" className="s-btn s-btn-primary s-btn-sm">Get in touch</a>
+          </nav>
+        </div>
       </header>
 
-      <section className="hero">
-        <div>
-          <div className="kicker signal">A digital workspace by {OWNER}</div>
-          <h1 className="display" style={{ marginTop: 14 }}>
-            My whole working life, <em>in one place.</em>
-          </h1>
-          <p className="lede">
-            {APP_NAME} is the online workspace I designed and built to run my work. My ideas, to-do list,
-            projects, content plan and money all live together, instead of being scattered across apps
-            and notebooks.
-          </p>
-          <p className="lede" style={{ marginTop: 12 }}>
-            <strong style={{ color: "var(--paper)" }}>I can build one like it for you or your team.</strong>
-          </p>
-          <div className="row wrap" style={{ marginTop: 28, gap: 12 }}>
-            <Link href="/os" className="btn primary big">Try the live demo</Link>
-            <a href="#hire" className="btn big">What I can do for you</a>
-          </div>
-        </div>
-        <Preview />
-      </section>
-
-      <section className="section" id="what">
-        <div className="section-head">
-          <div className="kicker signal">What it does</div>
-          <h2 className="h1">Six simple sections, all connected.</h2>
-          <p className="lede">Each part does one job. Because they share the same information, an idea can become a plan and then a finished project without being copied anywhere.</p>
-        </div>
-        <div className="grid g-3">
-          {FEATURES.map((f) => (
-            <div key={f.name} className="card feature">
-              <span className="icon">{f.icon}</span>
-              <h3 className="h2">{f.name}</h3>
-              <p className="muted" style={{ margin: 0 }}>{f.body}</p>
-            </div>
-          ))}
-        </div>
-
-        <div style={{ marginTop: 48 }}>
-          <h3 className="h2" style={{ fontSize: 22, marginBottom: 20 }}>How it works</h3>
-          <div className="steps">
-            {STEPS.map(([t, b], i) => (
-              <div key={t} className="stack" style={{ gap: 10 }}>
-                <span className="step-num">{i + 1}</span>
-                <h4 className="h2" style={{ margin: 0 }}>{t}</h4>
-                <p className="muted" style={{ margin: 0 }}>{b}</p>
+      <main>
+        <section className="s-hero">
+          <div className="wrap-w">
+            <div>
+              <p className="s-hello"><Star size={16} />Hi, I&apos;m Shana Campbell</p>
+              <h1>I build apps, automations and AI agents that get real work done.</h1>
+              <p className="lead">
+                I turn messy processes into simple systems, using AI, APIs and the same platforms
+                developers use every day: GitHub, Vercel and Linux.
+              </p>
+              <div className="s-status">
+                <span><i className="dot" />Open to AI, automation and junior developer roles</span>
+                <span><i className="dot" />Taking on small build projects</span>
               </div>
-            ))}
-          </div>
-          <div style={{ marginTop: 28 }}>
-            <Link href="/os" className="btn primary">See it working →</Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="section" id="hire">
-        <div className="section-head">
-          <div className="kicker signal">Hire me</div>
-          <h2 className="h1">What I can do for you</h2>
-          <p className="lede">I help small businesses, charities, schools and families use technology calmly and well. These are the things people hire me for.</p>
-        </div>
-        <div className="grid g-3">
-          {SERVICES.map((s) => (
-            <div key={s.title} className="card feature">
-              <span className="icon">{s.icon}</span>
-              <h3 className="h2">{s.title}</h3>
-              <p className="muted" style={{ margin: 0 }}>{s.body}</p>
-            </div>
-          ))}
-        </div>
-        <div className="cta" style={{ marginTop: 32 }}>
-          <div>
-            <h3 className="h1" style={{ margin: 0 }}>Have something in mind?</h3>
-            <p className="muted" style={{ margin: "6px 0 0" }}>Tell me what's getting in the way and I'll suggest a simple fix.</p>
-          </div>
-          <a href={LINKS.contact} className="btn primary big" target="_blank" rel="noreferrer">Get in touch</a>
-        </div>
-      </section>
-
-      <section className="section" id="tools">
-        <div className="section-head">
-          <div className="kicker signal">My tools</div>
-          <h2 className="h1">Ten tools I've made. {live} are live.</h2>
-          <p className="lede">Free, calm tools for children, families and neurodivergent people. No accounts, no ads, no tracking.</p>
-        </div>
-        <div className="grid g-3">
-          {TOOLS.map((t) => (
-            <article key={t.name} className="card stack" style={{ gap: 8 }}>
-              <div className="row between">
-                <span className="kicker">{t.group}</span>
-                <span className={`tag ${t.status === "live" ? "signal" : ""}`}>{t.status === "live" ? "Live" : "Coming soon"}</span>
+              <div className="s-actions">
+                <a href="#work" className="s-btn s-btn-primary">See my work</a>
+                <a href="#contact" className="s-btn">Get in touch</a>
               </div>
-              <h3 className="h2">{t.name}</h3>
-              <p className="muted" style={{ margin: 0, fontSize: 15, flex: 1 }}>{t.desc}</p>
-              {t.url && <a style={{ color: "var(--signal)", fontWeight: 600, fontSize: 15 }} href={t.url} target="_blank" rel="noreferrer">Try it →</a>}
+            </div>
+            <div className="hero-art">
+              <span className="star-big"><Star size={56} /></span>
+              <Browser src="/work/serenova-os.jpg" url="Serenova OS: Home" alt="The Home screen of Serenova OS, a workspace app Shana built, showing today's priorities, projects and a content plan." />
+            </div>
+          </div>
+        </section>
+
+        <section className="s-section alt" id="work">
+          <div className="wrap-w">
+            <div className="s-head">
+              <h2>Selected work</h2>
+              <p>Three projects that show how I plan, build and ship: an app, a company-wide systems plan, and a product with content around it.</p>
+            </div>
+
+            <article className="case">
+              <div className="case-art">
+                <Browser src="/work/serenova-ideas.jpg" url="Serenova OS: Ideas" alt="The Ideas screen of Serenova OS, where each idea can be turned into tasks or added to a content plan." />
+              </div>
+              <div>
+                <p className="case-kind">Web app built with AI</p>
+                <h3>Serenova OS</h3>
+                <p className="summary">A workspace app where ideas, to-dos, projects and a content plan are connected, so one idea can become a plan in a click.</p>
+                <ul>
+                  <li>Planned the structure and wrote the brief, then built it section by section with AI as my coding partner.</li>
+                  <li>Version-controlled on GitHub and deployed on Vercel, so every change goes live automatically.</li>
+                  <li>Added a password-protected private mode, with a public demo for visitors.</li>
+                </ul>
+                <div className="chips">{["Next.js", "React", "TypeScript", "GitHub", "Vercel", "AI-assisted"].map((c) => <span key={c} className="chip">{c}</span>)}</div>
+                <div className="case-links">
+                  <Link href="/os" className="s-btn s-btn-primary s-btn-sm">Try the live demo</Link>
+                  <a href={LINKS.source} className="s-btn s-btn-sm" target="_blank" rel="noreferrer">View the code</a>
+                </div>
+              </div>
             </article>
-          ))}
-        </div>
-      </section>
 
-      <section className="section" id="about">
-        <div className="grid g-2" style={{ alignItems: "start", gap: 40 }}>
-          <div>
-            <div className="kicker signal">About</div>
-            <h2 className="h1">Hi, I&apos;m {OWNER_FIRST}.</h2>
+            <article className="case flip">
+              <div className="case-art">
+                <div className="roadmap" role="img" aria-label="A five-phase Microsoft 365 roadmap, from organising data to adding AI agents.">
+                  <div className="roadmap-title">Microsoft 365 roadmap</div>
+                  <div className="roadmap-sub">Organise the data first. Add AI last.</div>
+                  <div className="phases">
+                    {[
+                      ["Organise", "SharePoint and Microsoft Lists"],
+                      ["Automate", "Power Automate flows"],
+                      ["Build tools", "Power Apps for daily tasks"],
+                      ["Share", "Power Pages for outside users"],
+                      ["Add AI", "Copilot and AI agents"],
+                    ].map(([t, s], i) => (
+                      <div key={t} className="phase"><b>{i + 1}</b><div><strong>{t}</strong><span>{s}</span></div></div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p className="case-kind">Systems and automation, in-house</p>
+                <h3>Microsoft 365 transformation plan</h3>
+                <p className="summary">A five-phase plan to move a busy UK events company from scattered emails and spreadsheets to connected systems.</p>
+                <ul>
+                  <li>Built and presented the roadmap to leadership, from SharePoint and Lists through to Copilot and AI agents.</li>
+                  <li>Set up an enquiries workflow system and trained staff with a 13-slide guide and a quick-start web page.</li>
+                  <li>Made the case that structured data has to come before AI automation, so the AI has something reliable to work with.</li>
+                </ul>
+                <div className="chips">{["SharePoint", "Microsoft Lists", "Power Automate", "Power Apps", "Copilot"].map((c) => <span key={c} className="chip">{c}</span>)}</div>
+              </div>
+            </article>
+
+            <article className="case">
+              <div className="case-art">
+                <div className="hc" role="img" aria-label="How Human Cybersecurity fits together: the app, blog posts, a 7-day challenge and a sign-up form.">
+                  <div className="roadmap-title" style={{ color: "var(--night)" }}>How it fits together</div>
+                  <div className="hc-flow">
+                    <div className="hc-node main"><strong>Human Cybersecurity app</strong><span>A short daily check-in</span></div>
+                    <div className="hc-node"><strong>Blog posts</strong><span>Explain the idea</span></div>
+                    <div className="hc-node"><strong>7-day reset</strong><span>A challenge to try it</span></div>
+                    <div className="hc-node" style={{ gridColumn: "span 2" }}><strong>Sign-up form</strong><span>Tally form that brings people in</span></div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p className="case-kind">Product and content</p>
+                <h3>Human Cybersecurity</h3>
+                <p className="summary">A daily self check-in app that uses ideas from cybersecurity to help people look after their own wellbeing.</p>
+                <ul>
+                  <li>Designed and built the app, and launched it on its own web address.</li>
+                  <li>Wrote blog posts and a 7-day reset challenge to give people a reason to use it.</li>
+                  <li>Connected sign-ups through a Tally form, so new users arrive without manual work.</li>
+                </ul>
+                <div className="chips">{["Bolt", "AI-assisted", "Tally", "Content"].map((c) => <span key={c} className="chip">{c}</span>)}</div>
+                <div className="case-links">
+                  <a href={LINKS.humanCyber} className="s-btn s-btn-primary s-btn-sm" target="_blank" rel="noreferrer">Open the app</a>
+                </div>
+              </div>
+            </article>
           </div>
-          <div>
-            <p className="lede" style={{ marginTop: 0 }}>
-              I&apos;m a former teacher and the founder of a small digital practice, with Level 3 training in coding,
-              SEN, psychology and wellbeing. I build technology that feels calm and makes sense the first time you use it.
-            </p>
-            <p className="lede">
-              I built {APP_NAME} myself, from design to code to going live, to run my own work. It&apos;s also a working
-              example of what I can build for clients.
-            </p>
-            <div className="row wrap" style={{ marginTop: 20, gap: 10 }}>
-              <a className="btn primary" href={LINKS.contact} target="_blank" rel="noreferrer">Get in touch</a>
-              <a className="btn" href={LINKS.portfolio} target="_blank" rel="noreferrer">My portfolio</a>
-              <a className="btn" href={LINKS.github} target="_blank" rel="noreferrer">GitHub</a>
+        </section>
+
+        <section className="s-section" id="skills">
+          <div className="wrap-w">
+            <div className="s-head">
+              <h2>What I can do</h2>
+              <p>I&apos;m an AI-assisted builder. I plan what&apos;s needed, direct AI tools to build it, test it properly and ship it on real infrastructure.</p>
+            </div>
+            <div className="skills">
+              {SKILLS.map((s) => (
+                <div key={s.group} className="skill">
+                  <h3>{s.group}</h3>
+                  <p>{s.intro}</p>
+                  <ul>{s.items.map((i) => <li key={i}>{i}</li>)}</ul>
+                </div>
+              ))}
+            </div>
+
+            <div className="process" aria-label="How I take a project from idea to live">
+              {PROCESS.map((p, i) => (
+                <div key={p.title} className="proc">
+                  <span className="proc-n">{i + 1}</span>
+                  <h3>{p.title}</h3>
+                  <p>{p.body}</p>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <footer className="row between wrap" style={{ paddingTop: 28, borderTop: "1px solid var(--rule)" }}>
-        <span className="muted" style={{ fontSize: 14 }}>© {new Date().getFullYear()} {OWNER}. Designed and built by {OWNER}.</span>
-        <Link href="/os" style={{ color: "var(--signal)", fontWeight: 600, fontSize: 14 }}>Try the live demo →</Link>
+        <section className="s-section alt" id="work-with-me">
+          <div className="wrap-w">
+            <div className="s-head"><h2>Work with me</h2></div>
+            <div className="two">
+              <div className="roles">
+                <h3>Hiring?</h3>
+                <p>I&apos;m looking for a team where I can build, automate and keep learning.</p>
+                <ul>{ROLES.map((r) => <li key={r}><Star size={16} />{r}</li>)}</ul>
+                <a href="#contact" className="s-btn s-btn-sm" style={{ marginTop: 26, background: "#fff" }}>Talk to me about a role</a>
+              </div>
+              <div className="offers">
+                <h3>Need something built?</h3>
+                {OFFERS.map((o) => <div key={o.title} className="offer"><strong>{o.title}</strong><p>{o.body}</p></div>)}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="s-section" id="contact">
+          <div className="wrap-w contact">
+            <div className="s-head" style={{ marginBottom: 0 }}>
+              <h2>Get in touch</h2>
+              <p>Tell me about the role or the project. I reply to every message within two working days.</p>
+              <p style={{ marginTop: 18 }}><a href={LINKS.github} target="_blank" rel="noreferrer" style={{ color: "var(--night)", fontWeight: 600 }}>See my code on GitHub</a></p>
+            </div>
+            <ContactForm />
+          </div>
+        </section>
+      </main>
+
+      <footer className="s-footer">
+        <div className="wrap-w">
+          <span>© {new Date().getFullYear()} Shana Campbell. Designed and built by me, with AI.</span>
+          <a href={LINKS.source} target="_blank" rel="noreferrer">How this site was built</a>
+        </div>
       </footer>
-    </main>
+    </div>
   );
 }

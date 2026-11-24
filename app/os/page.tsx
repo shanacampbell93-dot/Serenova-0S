@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Bar, Card, Check, PageHead, PriorityTag, Stat } from "@/components/ui";
-import { STAGES, gbp, projectProgress, shortDate, useOS } from "@/lib/store";
+import { STAGES, projectProgress, shortDate, useOS } from "@/lib/store";
 
 const greeting = () => {
   const h = new Date().getHours();
@@ -17,7 +17,6 @@ export default function CommandCentre() {
   const open = os.tasks.filter((t) => !t.done);
   const priorities = [...open].sort((a, b) => ["high", "med", "low"].indexOf(a.priority) - ["high", "med", "low"].indexOf(b.priority)).slice(0, 5);
   const pipeline = os.content.filter((c) => c.stage !== "published").length;
-  const net = os.txns.reduce((s, t) => s + t.amount, 0);
   const active = os.projects.filter((p) => p.status === "active");
 
   const submit = (e: React.FormEvent) => {
@@ -32,7 +31,7 @@ export default function CommandCentre() {
       <PageHead
         kicker="Home"
         title={<span suppressHydrationWarning>{greeting()}, Shana</span>}
-        lede="Here’s what’s happening across your ideas, to-dos, projects and content plan."
+        lede="Today’s priorities, active projects and content plan, in one place."
         aside={<span className="mono muted" suppressHydrationWarning>{new Date().toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long" })}</span>}
       />
 
@@ -42,11 +41,10 @@ export default function CommandCentre() {
         <button className="btn primary">Save</button>
       </form>
 
-      <div className="grid g-4" style={{ marginBottom: 18 }}>
+      <div className="grid g-3" style={{ marginBottom: 18 }}>
         <Stat label="Open tasks" value={open.length} note={`${open.filter((t) => t.priority === "high").length} high priority`} />
         <Stat label="Ideas saved" value={os.notes.length} note="in Ideas" />
         <Stat label="Content in progress" value={pipeline} note={`${os.content.filter((c) => c.stage === "scheduled").length} scheduled`} />
-        <Stat label="Money in (net)" value={gbp(net)} note="sample figures" />
       </div>
 
       <div className="grid g-3">

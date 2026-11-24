@@ -15,10 +15,10 @@ export default function OSLayout({ children }: { children: React.ReactNode }) {
           {demo && (
             <div className="explainer">
               <span>
-                <strong>You&apos;re looking at a live demo.</strong> This is the workspace {OWNER} built to run her work.
-                The information is made up, so click around and try adding an idea. Changes only save in your browser.
+                <strong>This is a live demo of Serenova OS</strong>, a workspace app built by {OWNER}. Everything here is
+                example content. Try typing an idea into the quick note box, then open Ideas.
               </span>
-              <Link href="/#hire" className="btn small">Work with {OWNER.split(" ")[0]}</Link>
+              <Link href="/" className="btn small">Back to Shana&apos;s portfolio</Link>
             </div>
           )}
           {children}

@@ -29,9 +29,9 @@ export default function Settings() {
         </Card>
         <Card title="Data">
           <p className="muted" style={{ marginTop: 0 }}>
-            In V1 your changes are saved in this browser only. Reset to bring back the sample data, for example before a demo.
+            Changes are saved in this browser only. Reset to bring back the example content.
           </p>
-          <button className="btn" onClick={() => os.reset()}>Reset to sample data</button>
+          <button className="btn" onClick={() => os.reset()}>Reset example content</button>
         </Card>
       </div>
     </>
